@@ -21,7 +21,7 @@ function App() {
       <h4>4. tabindex</h4>
       <button tabIndex={0}>Click</button>
       <hr />
-
+      
       <h4>5. colspan, rowspan</h4>
       <table border={1}>
         <tbody>
