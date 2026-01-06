@@ -1,18 +1,26 @@
-.player-title {
-    /* ваши стили */
-    color: blue;
-    background-color: yellow; 
-    border: 2px solid red;
+ul{
+    list-style: none;
 }
 
-.music-player {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
+p{
+    font-size: 21px;
 }
 
-.form-control {
-    width: 600px;
-    padding: 20px;
-    box-sizing: border-box;
+.taskBox{
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    border: 6px solid black;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.textDecoration{
+    text-decoration: line-through;
 }

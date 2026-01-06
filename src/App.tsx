@@ -1,44 +1,96 @@
 import './App.css'
 
+const tasks = [
+  {
+    id: 1,
+    title: "Купить продукты на неделю",
+    isDone: false,
+    addedAt: "1 сентября",
+    priority: 2,
+  },
+  {
+    id: 2,
+    title: "Полить цветы",
+    isDone: true,
+    addedAt: "2 сентября",
+    priority: 0,
+  },
+  {
+    id: 3,
+    title: "Сходить на тренировку",
+    isDone: false,
+    addedAt: "3 сентября",
+    priority: 1,
+  },
+  {
+    id: 4,
+    title: "Срочно отправить рабочий отчет",
+    isDone: false,
+    addedAt: "4 сентября",
+    priority: 4,
+  },
+  {
+    id: 5,
+    title: "Заплатить за коммунальные услуги",
+    isDone: false,
+    addedAt: "3 сентября",
+    priority: 3,
+  },
+]
+
+const priorityColors: { [key: number]: string } = {
+  0 : '#ffffff',
+  1 : '#ffd7b5',
+  2 : '#ffb38a',
+  3 : '#ff9248',
+  4 : '#ff6700',
+}
+
+// const tasks = [];
+// const tasks = null;
+
 function App() {
 
-  return (
-    
-    <>
-      <div className="music-player">
-        <h4>1. Классы</h4>
-        <h1 id="title" className="player-title">Мой музыкальный плеер</h1>
-        <hr />
-
-      <h4>2. maxlength</h4>
-      <input className='form-control' type="search" id="search" placeholder="Поиск музыки" maxLength={50} value="Начните печатать..." disabled={true}/>
-      <hr />
-
-      <h4>3. rows, cols, maxLength, readonly</h4>
-      <textarea className='form-control' placeholder="Оставьте комментарий к треку..." rows={3} cols={40} maxLength={200} readOnly disabled={true}></textarea>
-      <hr />
-
-      <h4>4. tabindex</h4>
-      <button tabIndex={0}>Click</button>
-      <hr />
-      
-      <h4>5. colspan, rowspan</h4>
-      <table border={1}>
-        <tbody>
-          <tr>
-            <td colSpan={2}>1</td>
-            <td rowSpan={3}>2</td>
-          </tr>
-        </tbody>
-      </table>
-      <hr />
-
-      <h4>6. for</h4>
-      <input type="radio" id="repeat-off" name="repeat" />
-      <label htmlFor="repeat-off">Без повтора</label>
-      <hr />
-
+  if (tasks === null) {
+    return (
+      <div>
+        <h1>Список задач</h1>
+        <span>Загрузка...</span>
       </div>
+    )
+  }
+
+  if (tasks.length === 0) {
+    return (
+      <div>
+        <h1>Список задас</h1>
+        <span>Задачи отсутствуют</span>
+      </div>
+    )
+  }
+
+
+  return (
+    <>
+      <h1>Список задач</h1>
+      <ul>
+        {tasks.map((task) => {
+          return(
+            <li key={task.id}>
+              <div className='taskBox' style={{ backgroundColor: priorityColors[task.priority] }}>
+                <div className='title'>
+                <h2>Заголовок: </h2> <p className = {task.isDone === true ? 'textDecoration' : ''}>{task.title}</p>
+                </div>
+                <h2>Статус: <input id='inputChecked' type="checkbox" checked={task.isDone === true ? true : false}/></h2>
+                <div className='title'>
+                  <h2>Дата создания задачи:</h2> 
+                  <p>{task.addedAt}</p>
+                </div>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
     </>
   )
 }
