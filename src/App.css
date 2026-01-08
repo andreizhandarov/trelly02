@@ -20,7 +20,3 @@ p{
     align-items: center;
     gap: 10px;
 }
-
-.textDecoration{
-    text-decoration: line-through;
-}

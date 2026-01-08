@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 
 const tasks = [
@@ -51,6 +52,8 @@ const priorityColors: { [key: number]: string } = {
 
 function App() {
 
+  let [selectedTaskId, setSelectTaskId] = useState(0)
+
   if (tasks === null) {
     return (
       <div>
@@ -73,15 +76,16 @@ function App() {
   return (
     <>
       <h1>Список задач</h1>
+      <button onClick={() => {setSelectTaskId(0)}}>Сбросить выделение</button>
       <ul>
         {tasks.map((task) => {
           return(
             <li key={task.id}>
-              <div className='taskBox' style={{ backgroundColor: priorityColors[task.priority] }}>
+              <div className='taskBox' onClick={() => {setSelectTaskId(task.id)}} style={{ backgroundColor: priorityColors[task.priority], border: task.id === selectedTaskId ? '6px solid blue' : '6px solid black'}}>
                 <div className='title'>
-                <h2>Заголовок: </h2> <p className = {task.isDone === true ? 'textDecoration' : ''}>{task.title}</p>
+                <h2>Заголовок: </h2> <p style={{textDecoration: task.isDone ? 'line-through' : 'none'}}>{task.title}</p>
                 </div>
-                <h2>Статус: <input id='inputChecked' type="checkbox" checked={task.isDone === true ? true : false}/></h2>
+                <h2>Статус: <input id='inputChecked' type="checkbox" defaultChecked={task.isDone === true}/></h2>
                 <div className='title'>
                   <h2>Дата создания задачи:</h2> 
                   <p>{task.addedAt}</p>
