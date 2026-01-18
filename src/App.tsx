@@ -1,44 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-// const tasks = [
-//   {
-//     id: 1,
-//     title: "Купить продукты на неделю",
-//     isDone: false,
-//     addedAt: "1 сентября",
-//     priority: 2,
-//   },
-//   {
-//     id: 2,
-//     title: "Полить цветы",
-//     isDone: true,
-//     addedAt: "2 сентября",
-//     priority: 0,
-//   },
-//   {
-//     id: 3,
-//     title: "Сходить на тренировку",
-//     isDone: false,
-//     addedAt: "3 сентября",
-//     priority: 1,
-//   },
-//   {
-//     id: 4,
-//     title: "Срочно отправить рабочий отчет",
-//     isDone: false,
-//     addedAt: "4 сентября",
-//     priority: 4,
-//   },
-//   {
-//     id: 5,
-//     title: "Заплатить за коммунальные услуги",
-//     isDone: false,
-//     addedAt: "3 сентября",
-//     priority: 3,
-//   },
-// ]
-
 const priorityColors: { [key: number]: string } = {
   0 : '#ffffff',
   1 : '#ffd7b5',
@@ -46,9 +8,6 @@ const priorityColors: { [key: number]: string } = {
   3 : '#ff9248',
   4 : '#ff6700',
 }
-
-// const tasks = [];
-// const tasks = null;
 
 function App() {
 
@@ -132,11 +91,16 @@ function App() {
       <div>
         <h2>Task ditail</h2>
         {selectedTask === null ? ('Not ditails') : (
-            <ul style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
-              <li>Title: {selectedTask.attributes.title}</li>
-              <li>BoardTitle: {selectedTask.attributes.boardTitle}</li>
-              <li>Description: {selectedTask.attributes.description}</li>
-            </ul>
+          <div>
+            {selectedTaskId !== selectedTask.id ? ('Loadind...') : (
+              <ul style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                <li>Title: {selectedTask.attributes.title}</li>
+                <li>BoardTitle: {selectedTask.attributes.boardTitle}</li>
+                <li>Description: {selectedTask.attributes.description}</li>
+              </ul>
+            )}
+          </div>
+          
         )}
       </div>
       </div>
