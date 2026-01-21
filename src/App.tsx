@@ -14,6 +14,7 @@ function App() {
   const [selectedTaskId, setSelectTaskId] = useState(null)
   const [selectedTask, setSelectedTask] = useState(null)
   const [tasks, setTasks] = useState(null)
+  const [selectBoardId, setSelectBoardId] = useState(null)
 
   useEffect(() => {
     fetch('https://trelly.it-incubator.app/api/1.0/boards/tasks', {
@@ -24,6 +25,20 @@ function App() {
     .then(res => res.json())
     .then(json => {setTasks(json.data)})
   }, [])
+
+  useEffect(() => {
+    if(!selectedTaskId){
+      return
+    }
+
+    fetch(`https://trelly.it-incubator.app/api/1.0/boards/${selectBoardId}/tasks/${selectedTaskId}`, {
+                  headers: {
+                    'api-key': ''
+                  }
+                })
+                .then(res => res.json())
+                .then(json => {setSelectedTask(json.data)})
+  }, [selectedTaskId])
 
   if (tasks === null) {
     return (
@@ -58,15 +73,9 @@ function App() {
             <li key={task.id}>
               <div className='taskBox' onClick={() => {
                 setSelectTaskId(task.id),
-
-                fetch(`https://trelly.it-incubator.app/api/1.0/boards/${task.attributes.boardId}/tasks/${task.id}`, {
-                  headers: {
-                    'api-key': ''
-                  }
-                })
-                .then(res => res.json())
-                .then(json => {setSelectedTask(json.data)})
-              }}
+                setSelectBoardId(task.attributes.boardId)
+              }
+            }
                   style={
                     { backgroundColor: priorityColors[task.attributes.priority], 
                       border: task.id === selectedTaskId ? '6px solid blue' : '6px solid black'}
@@ -90,18 +99,16 @@ function App() {
       </ul>
       <div>
         <h2>Task ditail</h2>
-        {selectedTask === null ? ('Not ditails') : (
-          <div>
-            {selectedTaskId !== selectedTask.id ? ('Loadind...') : (
+        {!selectedTaskId && !selectedTask && <span>"Not ditails"</span>}
+        {((selectedTaskId && !selectedTask) || (selectedTask && selectedTaskId !== selectedTask.id))  && <span>Loading...</span>}
+        {selectedTask && selectedTaskId === selectedTask.id && (
+          <div>  
               <ul style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
                 <li>Title: {selectedTask.attributes.title}</li>
                 <li>BoardTitle: {selectedTask.attributes.boardTitle}</li>
                 <li>Description: {selectedTask.attributes.description}</li>
               </ul>
-            )}
-          </div>
-          
-        )}
+          </div>)}
       </div>
       </div>
       
