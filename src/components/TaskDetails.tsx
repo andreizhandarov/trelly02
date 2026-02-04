@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react"
 
-export function TaskDetails(){
+export function TaskDetails({taskId, boardId}){
     const [selectedTask, setSelectedTask] = useState(null)
-    const [selectBoardId, setSelectBoardId] = useState('13923117-72de-4788-a7f0-4c42f162a5ab')
-
-    const selectedTaskId = '4f310604-82b5-4afd-b9a4-ddf12dfac0a3'
+    // const [selectBoardId, setSelectBoardId] = useState('13923117-72de-4788-a7f0-4c42f162a5ab')
+    // const selectedTaskId = '4f310604-82b5-4afd-b9a4-ddf12dfac0a3'
 
     useEffect(() => {
-        if(!selectedTaskId){
+        if(!taskId){
+            setSelectedTask(null)
             return
         }
     
-        fetch(`https://trelly.it-incubator.app/api/1.0/boards/${selectBoardId}/tasks/${selectedTaskId}`, {
+        fetch(`https://trelly.it-incubator.app/api/1.0/boards/${boardId}/tasks/${taskId}`, {
             headers: {
                 'api-key': ''
             }
         })
         .then(res => res.json())
         .then(json => {setSelectedTask(json.data)})
-    }, [selectedTaskId])
+    }, [taskId])
     
     return(
         <div>
             <h2>Task ditail</h2>
-            {!selectedTaskId && !selectedTask && <span>"Not ditails"</span>}
-            {((selectedTaskId && !selectedTask) || (selectedTask && selectedTaskId !== selectedTask.id))  && <span>Loading...</span>}
-            {selectedTask && selectedTaskId === selectedTask.id && (
+            {!taskId && !selectedTask && <span>"Not ditails"</span>}
+            {((taskId && !selectedTask) || (selectedTask && taskId !== selectedTask.id))  && <span>Loading...</span>}
+            {selectedTask && taskId === selectedTask.id && (
                 <div>  
                     <ul style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
                         <li>Title: {selectedTask.attributes.title}</li>

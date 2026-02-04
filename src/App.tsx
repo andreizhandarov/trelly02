@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     fetch('https://trelly.it-incubator.app/api/1.0/boards/tasks', {
       headers: {
-        'api-key': ''
+        'api-key': '8d196022-a951-4d8e-8c53-82cf604a7d0d'
       }
     })
     .then(res => res.json())
@@ -33,7 +33,7 @@ function App() {
 
     fetch(`https://trelly.it-incubator.app/api/1.0/boards/${selectBoardId}/tasks/${selectedTaskId}`, {
                   headers: {
-                    'api-key': ''
+                    'api-key': '8d196022-a951-4d8e-8c53-82cf604a7d0d'
                   }
                 })
                 .then(res => res.json())
