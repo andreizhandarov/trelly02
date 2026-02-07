@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 
 export function TaskDetails({taskId, boardId}){
     const [selectedTask, setSelectedTask] = useState(null)
-    // const [selectBoardId, setSelectBoardId] = useState('13923117-72de-4788-a7f0-4c42f162a5ab')
-    // const selectedTaskId = '4f310604-82b5-4afd-b9a4-ddf12dfac0a3'
 
     useEffect(() => {
         if(!taskId){

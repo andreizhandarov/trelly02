@@ -32,20 +32,20 @@ export function TasksList({onTaskSelect, selectedTaskId}){
             </div>
         )
     }
-    
 
+    const handlClick = (taskId, boardId) => {
+        onTaskSelect?.(taskId, boardId)
+    }
+    
     return(
         <div>
             <ul>
                 {tasks.map((task) => {
-                    const handlClick = () => {
-                        onTaskSelect?.(task.id, task.attributes.boardId)
-                    }
                     return(
                         <TaskItem 
                             key={task.id}
-                            task={task.id}
-                            handlClick={handlClick}
+                            task={task}
+                            onSelect={handlClick}
                             isSelect={task.id === selectedTaskId}
                         />
                     )
@@ -54,4 +54,5 @@ export function TasksList({onTaskSelect, selectedTaskId}){
         </div>
     )
 }
+
 
