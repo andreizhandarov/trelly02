@@ -5,10 +5,10 @@ import { TasksList } from "./TasksList";
 
 export function MainPage(){
 
-    const [taskId, setTaskId] = useState(null)
-    const [boardId, setBoardId] = useState(null)
+    const [taskId, setTaskId] = useState<string | null>(null)
+    const [boardId, setBoardId] = useState<string | null>(null)
 
-    const handelTaskSelect = (id, idBoard) => {
+    const handelTaskSelect = (id: string | null, idBoard: string | null) => {
         setTaskId(id),
         setBoardId(idBoard)
     }

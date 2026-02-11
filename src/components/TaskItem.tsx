@@ -6,7 +6,29 @@ const priorityColors: { [key: number]: string } = {
     4 : '#ff6700',
 }
 
-export function TaskItem({task, onSelect, isSelect}){
+type GlobalTaskListItemDto = {
+    id: string
+    title: string
+    boardId: string
+    status: number
+    priority: number
+    addedAt: string
+    attachmentsCount: number 
+}
+
+export type GlobalTaskListItemJsonApiData = {
+    id: string
+    type: string
+    attributes: GlobalTaskListItemDto
+}
+
+type Props = {
+    isSelect: boolean
+    onSelect: (id: string, iDBoard: string) => void
+    task: GlobalTaskListItemJsonApiData
+}
+
+export function TaskItem({task, onSelect, isSelect}: Props){
 
     const handlClick = () => {
         onSelect?.(task.id, task.attributes.boardId)}
