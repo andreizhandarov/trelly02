@@ -1,3 +1,5 @@
+import type { GlobalTaskListItemJsonApiData } from "../dal/api"
+
 const priorityColors: { [key: number]: string } = {
     0 : '#ffffff',
     1 : '#ffd7b5',
@@ -6,21 +8,21 @@ const priorityColors: { [key: number]: string } = {
     4 : '#ff6700',
 }
 
-type GlobalTaskListItemDto = {
-    id: string
-    title: string
-    boardId: string
-    status: number
-    priority: number
-    addedAt: string
-    attachmentsCount: number 
-}
+// type GlobalTaskListItemDto = {
+//     id: string
+//     title: string
+//     boardId: string
+//     status: number
+//     priority: number
+//     addedAt: string
+//     attachmentsCount: number 
+// }
 
-export type GlobalTaskListItemJsonApiData = {
-    id: string
-    type: string
-    attributes: GlobalTaskListItemDto
-}
+// export type GlobalTaskListItemJsonApiData = {
+//     id: string
+//     type: string
+//     attributes: GlobalTaskListItemDto
+// }
 
 type Props = {
     isSelect: boolean
