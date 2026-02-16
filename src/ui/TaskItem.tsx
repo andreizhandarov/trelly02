@@ -8,22 +8,6 @@ const priorityColors: { [key: number]: string } = {
     4 : '#ff6700',
 }
 
-// type GlobalTaskListItemDto = {
-//     id: string
-//     title: string
-//     boardId: string
-//     status: number
-//     priority: number
-//     addedAt: string
-//     attachmentsCount: number 
-// }
-
-// export type GlobalTaskListItemJsonApiData = {
-//     id: string
-//     type: string
-//     attributes: GlobalTaskListItemDto
-// }
-
 type Props = {
     isSelect: boolean
     onSelect: (id: string, iDBoard: string) => void

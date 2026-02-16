@@ -3,7 +3,6 @@ import './../App.css'
 import { TaskItem } from "./TaskItem"
 import { getTasks, type GlobalTaskListItemJsonApiData } from "../dal/api"
 
-
 type Props = {
     selectedTaskId: string | null
     onTaskSelect: (id: string | null, iDBoard: string | null) => void 
@@ -15,12 +14,7 @@ export function TasksList({onTaskSelect, selectedTaskId}: Props){
     const [tasks, setTasks] = useState<Array<GlobalTaskListItemJsonApiData> | null>(null)
 
     useEffect(() => {
-        // fetch('https://trelly.it-incubator.app/api/1.0/boards/tasks', {
-        //     headers: {
-        //         'api-key': '8d196022-a951-4d8e-8c53-82cf604a7d0d'
-        //     }
-        // })
-        // .then(res => res.json())
+
         getTasks()
             .then(json => {setTasks(json.data)})
     }, [])
