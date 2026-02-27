@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import { getTask, type TaskDetailsData } from "../dal/api"
+import { useTaskDetails } from "../dll/useTaskDetails"
 
 
 type Props = {
@@ -8,17 +7,8 @@ type Props = {
 }
 
 export function TaskDetails({taskId, boardId}: Props){
-    const [selectedTask, setSelectedTask] = useState<TaskDetailsData | null>(null)
 
-    useEffect(() => {
-        if(!taskId){
-            setSelectedTask(null)
-            return
-        }
-    
-        getTask({boardId, taskId})
-            .then(json => {setSelectedTask(json.data)})
-    }, [taskId])
+    const {selectedTask} = useTaskDetails(taskId, boardId)
     
     return(
         <div>
