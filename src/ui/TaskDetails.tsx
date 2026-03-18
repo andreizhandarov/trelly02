@@ -1,4 +1,5 @@
 import { useTaskDetails } from "../dll/useTaskDetails"
+import style from './TaskDetails.module.css'
 
 
 type Props = {
@@ -17,7 +18,7 @@ export function TaskDetails({taskId, boardId}: Props){
             {((taskId && !selectedTask) || (selectedTask && taskId !== selectedTask.id))  && <span>Loading...</span>}
             {selectedTask && taskId === selectedTask.id && (
                 <div>  
-                    <ul style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                    <ul className={style.task_details}>
                         <li>Title: {selectedTask.attributes.title}</li>
                         <li>BoardTitle: {selectedTask.attributes.boardTitle}</li>
                         <li>Description: {selectedTask.attributes.description}</li>

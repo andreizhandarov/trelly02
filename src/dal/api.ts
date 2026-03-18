@@ -21,7 +21,7 @@ type GlobalTaskListResponse = {
 export const getTasks = () => {
     const promise: Promise<GlobalTaskListResponse> = fetch('https://trelly.it-incubator.app/api/1.0/boards/tasks', {
         headers: {
-            'api-key': ''
+            'api-key': import.meta.env.VITE_API_KAY
         }
     })
     .then(res => res.json())
@@ -62,7 +62,7 @@ type Props = {
 export const getTask = ({boardId, taskId}: Props) => {
     const promise: Promise<GetTaskOutput> = fetch(`https://trelly.it-incubator.app/api/1.0/boards/${boardId}/tasks/${taskId}`, {
         headers: {
-            'api-key': ''
+            'api-key': import.meta.env.VITE_API_KAY
         }
     })
     .then(res => res.json())
